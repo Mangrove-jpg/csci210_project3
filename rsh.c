@@ -116,6 +116,23 @@ int main() {
 				"11: exit\n"  
 				"12: help\n");
 	}
+	// CD
+	else if (strcmp(command, "cd") == 0)
+	{
+		// Print error if more than one input
+		if (current_token_index > 2)
+		{
+			printf("-rsh: cd: too many arguments\n");
+			continue;
+		}
+
+		// use chdir system call
+		if (chdir(token_array[1]) == -1)
+		{
+			printf("Error executing cd to %s\n", token_array[1]);
+			continue;
+		}
+	}
 
 	// Spawn process
 	else
